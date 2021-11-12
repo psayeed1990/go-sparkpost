@@ -1,4 +1,4 @@
-module go-sparkpost
+module github.com/psayeed1990/go-sparkpost
 
 go 1.17
 
