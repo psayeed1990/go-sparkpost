@@ -5,6 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
+	"github.com/gofiber/fiber/v2/middleware/cors"
+
 	"log"
 
 	gosp "github.com/SparkPost/gosparkpost"
@@ -29,6 +31,9 @@ func GodotEnv(key string) string {
 
 func main(){
 	app := fiber.New()
+
+	//cors
+	app.Use(cors.New())
 
 	//config sparkpost
 	cfg := &gosp.Config{ApiKey: GodotEnv("SPARKPOST_API_KEY")}
