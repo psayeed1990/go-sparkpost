@@ -1,0 +1,1 @@
+web: bin/go-fiber-right-click-editor

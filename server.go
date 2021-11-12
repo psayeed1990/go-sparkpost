@@ -16,7 +16,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func GodotEnv(key string) string {
+func DotEnv(key string) string {
 	env := make(chan string, 1)
 
 	if os.Getenv("GO_ENV") != "production" {
@@ -36,7 +36,7 @@ func main(){
 	app.Use(cors.New())
 
 	//config sparkpost
-	cfg := &gosp.Config{ApiKey: GodotEnv("SPARKPOST_API_KEY")}
+	cfg := &gosp.Config{ApiKey: DotEnv("SPARKPOST_API_KEY")}
 	var sp gosp.Client 
 	sp.Init(cfg)
 	
@@ -55,15 +55,16 @@ func main(){
 			return err
 		}
 
-		//send mail
+		//setup mail data
 		html := fmt.Sprintf(`You got an email from <br/>%s`, payload.Name)
 		content := gosp.Content{
-			From: GodotEnv("EMAIL"),
+			From: DotEnv("EMAIL"),
 			Subject: payload.Subject,
 			HTML: html,
 
 		}
 
+		//send mail
 		sender := &gosp.Transmission{
 			Content: content,
 			Recipients: []string{"sayeedmondal1412@gmail.com"},
