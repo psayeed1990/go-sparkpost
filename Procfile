@@ -1,1 +1,1 @@
-web: bin/go-fiber-right-click-editor
+web: bin/go-sparkpost
